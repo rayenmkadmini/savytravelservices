@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * SAVY TRAVEL SERVICES — design tokens
+ * Ink navy + warm sand paper, with a burnished-gold accent and a deep sea teal.
+ */
+@theme {
+  --color-ink: #0f1b2d;
+  --color-ink-soft: #24344d;
+  --color-ink-muted: #5b6577;
+  --color-sand: #f6f1e8;
+  --color-sand-deep: #ece3d3;
+  --color-paper: #fffdf9;
+  --color-line: #e4dac8;
+  --color-gold: #a8742a;
+  --color-gold-strong: #8a5e1f;
+  --color-gold-soft: #f3e6cc;
+  --color-sea: #146fb4;
+  --color-sea-soft: #e3f0fa;
+  --color-success: #1f7a4d;
+  --color-success-soft: #e0f1e7;
+  --color-warning: #a15c07;
+  --color-warning-soft: #fdf0d9;
+  --color-danger: #b42318;
+  --color-danger-soft: #fbe4e1;
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), ui-serif, Georgia, serif;
+
+  --radius-card: 1.25rem;
+  --shadow-soft: 0 1px 2px rgb(15 27 45 / 0.04), 0 8px 24px -12px rgb(15 27 45 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(15 27 45 / 0.06), 0 24px 48px -20px rgb(15 27 45 / 0.35);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@custom-variant rtl (&:where([dir="rtl"], [dir="rtl"] *));
+
+:root {
+  --font-body: var(--font-manrope);
+  --font-heading: var(--font-cormorant);
+  color-scheme: light;
+}
+
+html[lang="ar"] {
+  --font-body: var(--font-tajawal);
+  --font-heading: var(--font-amiri);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-sand);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-gold-soft);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  html[lang="ar"] h1,
+  html[lang="ar"] h2,
+  html[lang="ar"] h3 {
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 80rem;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+  html[lang="ar"] .eyebrow {
+    letter-spacing: 0;
+    font-size: 0.85rem;
+  }
+  .prose-savy {
+    line-height: 1.8;
+    color: var(--color-ink-soft);
+  }
+  .prose-savy p + p {
+    margin-top: 1rem;
+  }
+  .grain {
+    background-image: radial-gradient(rgb(15 27 45 / 0.035) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
